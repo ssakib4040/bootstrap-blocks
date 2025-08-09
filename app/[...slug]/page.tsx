@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 
 export default function Page({ params }: any) {
   // Expecting params.slug = [folder, file]
-  if (!params.slug || params.slug.length !== 2) notFound();
+  if (!params?.slug || params?.slug?.length !== 2) notFound();
   // Convert dashes to spaces for folder only, not file
-  const [folderSlug, fileSlug] = params.slug;
+  const [folderSlug, fileSlug] = params?.slug;
   const folder = folderSlug.replace(/-/g, " ");
   const file = fileSlug; // keep dashes in file name
 
