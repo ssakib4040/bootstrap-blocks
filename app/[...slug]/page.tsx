@@ -2,11 +2,7 @@ import Link from "next/link";
 import fs from "node:fs";
 import { notFound } from "next/navigation";
 
-interface PageProps {
-  params: { slug: string[] };
-}
-
-export default function Page({ params }: PageProps) {
+export default function Page({ params }: any) {
   // Expecting params.slug = [folder, file]
   if (!params.slug || params.slug.length !== 2) notFound();
   // Convert dashes to spaces for folder only, not file
