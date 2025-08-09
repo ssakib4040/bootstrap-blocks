@@ -1,8 +1,27 @@
 import Link from "next/link";
 import fs from "node:fs";
+import { notFound } from "next/navigation";
 
-export default function Home() {
-  // Build sidebar: folders and .html files as links
+interface PageProps {
+  params: { slug: string[] };
+}
+
+export default function Page({ params }: PageProps) {
+  // Expecting params.slug = [folder, file]
+  if (!params.slug || params.slug.length !== 2) notFound();
+  // Convert dashes to spaces for folder only, not file
+  const [folderSlug, fileSlug] = params.slug;
+  const folder = folderSlug.replace(/-/g, " ");
+  const file = fileSlug; // keep dashes in file name
+
+  let content = "";
+  try {
+    content = fs.readFileSync(`templates/${folder}/${file}.html`, "utf-8");
+  } catch (e) {
+    notFound();
+  }
+
+  // Sidebar logic (copied from homepage, but dashes for spaces in links)
   const templates = fs.readdirSync("templates").map((folder) => {
     const files = fs.readdirSync(`templates/${folder}`);
     return {
@@ -14,10 +33,8 @@ export default function Home() {
     };
   });
 
-  console.log("templates", templates);
-
-  const previewWidth = 240; // width in px for preview box
-  const previewHeight = (previewWidth * 1080) / 1920; // maintain 16:9 ratio
+  const previewWidth = 240;
+  const previewHeight = (previewWidth * 1080) / 1920;
 
   // Helper to convert spaces to dashes for URLs
   const toSlug = (str: string) =>
@@ -27,20 +44,19 @@ export default function Home() {
     <div style={{ height: "100vh", display: "flex" }}>
       {/* sidebar */}
       <div
-        className="dev"
         style={{
           width: "300px",
           overflowY: "auto",
+          flexShrink: 0,
+          borderRight: "1px solid #eaeaea",
         }}
       >
         {templates.length > 0 ? (
           <ul className="p-4">
             {templates.map((template, index) => {
-              console.log("template", template);
               return (
                 <div style={{ marginBottom: "20px" }} key={index}>
                   <h5>{template?.folder}</h5>
-
                   {template?.files?.map((file, fileIndex) => {
                     return (
                       <div
@@ -82,10 +98,29 @@ export default function Home() {
       </div>
 
       {/* content */}
-      <div className="w-full overflow-y-scroll  flex items-center justify-center">
-        <h1 className="text-3xl font-bold">
-          Select a template from the sidebar
-        </h1>
+      <div
+        className="w-full overflow-y-scroll  flex flex-col items-center justify-center"
+        style={{
+          width: "100%",
+          overflow: "auto",
+        }}
+      >
+        <div className="p-4 border-b w-full">
+          <a href="/" className="text-blue-600 hover:underline">
+            ← Back to Home
+          </a>
+          <span className="ml-2 text-gray-500">
+            / {folder} / {file}.html
+          </span>
+        </div>
+        <div className="flex-1 overflow-y-auto p-4 w-full max-w-4xl">
+          <h1 className="text-2xl font-bold mb-4">
+            {folder} / {file}.html
+          </h1>
+          <pre className="bg-gray-100 p-4 rounded text-xs overflow-x-auto">
+            {content}
+          </pre>
+        </div>
       </div>
     </div>
   );
