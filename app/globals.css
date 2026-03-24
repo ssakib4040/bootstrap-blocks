@@ -21,7 +21,7 @@
 html,
 body {
   margin: 0;
-  min-height: 100%;
+  height: 100%;
 }
 
 body {
@@ -30,14 +30,16 @@ body {
     radial-gradient(circle at 15% 10%, #dff8ee 0%, rgba(223, 248, 238, 0) 40%),
     radial-gradient(circle at 90% 90%, #dbe9ff 0%, rgba(219, 233, 255, 0) 38%),
     var(--bg-0);
+  overflow: hidden;
 }
 
 .workspace-shell {
-  min-height: 100vh;
+  height: 100dvh;
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 18px;
   padding: 18px;
+  overflow: hidden;
 }
 
 .template-library {
@@ -86,7 +88,8 @@ body {
 }
 
 .library-groups {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 18px;
   display: grid;
   gap: 16px;
@@ -138,6 +141,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  height: 100%;
   min-height: 0;
 }
 
@@ -184,6 +188,7 @@ body {
   gap: 16px;
   height: 100%;
   min-height: 0;
+  overflow: hidden;
 }
 
 .panel {
@@ -218,7 +223,7 @@ body {
   border: 0;
   width: 100%;
   height: 100%;
-  min-height: 560px;
+  min-height: 0;
   background: white;
 }
 
@@ -261,10 +266,16 @@ body {
 }
 
 @media (max-width: 1080px) {
+  body {
+    overflow: auto;
+  }
+
   .workspace-shell {
+    height: auto;
     grid-template-columns: 1fr;
     padding: 12px;
     gap: 12px;
+    overflow: visible;
   }
 
   .template-library {
