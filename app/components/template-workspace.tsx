@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { TemplateGroup } from "@/lib/templates";
 
 type TemplateWorkspaceProps = {
@@ -40,21 +39,50 @@ export default function TemplateWorkspace({
   groups,
   selected,
 }: TemplateWorkspaceProps) {
+  const [activeSelection, setActiveSelection] = useState<
+    TemplateWorkspaceProps["selected"]
+  >(selected);
   const [copyState, setCopyState] = useState<"idle" | "copied" | "error">(
     "idle",
   );
+
+  useEffect(() => {
+    setActiveSelection(selected);
+  }, [selected]);
+
+  useEffect(() => {
+    function handlePopState(): void {
+      const segments = window.location.pathname.split("/").filter(Boolean);
+
+      if (segments.length === 2) {
+        setActiveSelection({
+          folderSlug: segments[0],
+          fileSlug: segments[1],
+        });
+        return;
+      }
+
+      setActiveSelection(undefined);
+    }
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   const selectedTemplate = useMemo(() => {
     if (!groups.length) {
       return null;
     }
 
-    if (selected) {
+    if (activeSelection) {
       const selectedGroup = groups.find(
-        (group) => group.slug === selected.folderSlug,
+        (group) => group.slug === activeSelection.folderSlug,
       );
       const selectedFile = selectedGroup?.files.find(
-        (file) => file.slug === selected.fileSlug,
+        (file) => file.slug === activeSelection.fileSlug,
       );
 
       if (selectedGroup && selectedFile) {
@@ -76,7 +104,7 @@ export default function TemplateWorkspace({
       group: fallbackGroup,
       file: fallbackFile,
     };
-  }, [groups, selected]);
+  }, [groups, activeSelection]);
 
   const code = selectedTemplate?.file.content ?? "";
 
@@ -95,6 +123,13 @@ export default function TemplateWorkspace({
     window.setTimeout(() => {
       setCopyState("idle");
     }, 1800);
+  }
+
+  function handleTemplateSelect(folderSlug: string, fileSlug: string): void {
+    const href = `/${folderSlug}/${fileSlug}`;
+
+    setActiveSelection({ folderSlug, fileSlug });
+    window.history.pushState({}, "", href);
   }
 
   if (!selectedTemplate) {
@@ -133,13 +168,17 @@ export default function TemplateWorkspace({
                   const isActive = href === selectedPath;
 
                   return (
-                    <Link
+                    <a
                       className={`template-link${isActive ? " is-active" : ""}`}
                       href={href}
                       key={file.slug}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        handleTemplateSelect(group.slug, file.slug);
+                      }}
                     >
                       {file.name.replace(/\.html$/i, "")}
-                    </Link>
+                    </a>
                   );
                 })}
               </div>
