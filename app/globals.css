@@ -237,6 +237,41 @@ body {
   color: #d8e2f0;
   font-size: 0.85rem;
   line-height: 1.6;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+}
+
+.code-block code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* highlight.js customizations */
+.hljs {
+  background: #0d1522 !important;
+  color: #d8e2f0 !important;
+}
+
+.hljs-tag {
+  color: #7ec5d8 !important;
+}
+
+.hljs-attr {
+  color: #a9d1d8 !important;
+}
+
+.hljs-string {
+  color: #6dbf6c !important;
+}
+
+.hljs-literal,
+.hljs-number {
+  color: #d69b66 !important;
+}
+
+.hljs-attr-value {
+  color: #6dbf6c !important;
 }
 
 .empty-state-shell {

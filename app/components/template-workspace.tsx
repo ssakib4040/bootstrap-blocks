@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import hljs from "highlight.js";
 import type { TemplateGroup } from "@/lib/templates";
 
 type TemplateWorkspaceProps = {
@@ -219,7 +220,11 @@ export default function TemplateWorkspace({
           <article className="panel">
             <div className="panel-title">HTML Code</div>
             <pre className="code-block">
-              <code>{code}</code>
+              <code
+                dangerouslySetInnerHTML={{
+                  __html: hljs.highlight(code, { language: "html" }).value,
+                }}
+              />
             </pre>
           </article>
         </div>
