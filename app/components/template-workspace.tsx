@@ -36,6 +36,14 @@ function buildPreviewDocument(snippet: string): string {
 </html>`;
 }
 
+function formatTemplateName(filename: string): string {
+  return filename
+    .replace(/\.html$/i, "")
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 export default function TemplateWorkspace({
   groups,
   selected,
@@ -178,7 +186,7 @@ export default function TemplateWorkspace({
                         handleTemplateSelect(group.slug, file.slug);
                       }}
                     >
-                      {file.name.replace(/\.html$/i, "")}
+                      {formatTemplateName(file.name)}
                     </a>
                   );
                 })}
@@ -193,7 +201,7 @@ export default function TemplateWorkspace({
           <div>
             <p className="workspace-kicker">Selected Block</p>
             <h2>
-              {selectedTemplate.group.folder} / {selectedTemplate.file.name}
+              {selectedTemplate.group.folder} / {formatTemplateName(selectedTemplate.file.name)}
             </h2>
           </div>
           <button className="copy-button" type="button" onClick={handleCopy}>
