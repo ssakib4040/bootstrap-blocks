@@ -48,9 +48,8 @@ export default function TemplateWorkspace({
   groups,
   selected,
 }: TemplateWorkspaceProps) {
-  const [activeSelection, setActiveSelection] = useState<
-    TemplateWorkspaceProps["selected"]
-  >(selected);
+  const [activeSelection, setActiveSelection] =
+    useState<TemplateWorkspaceProps["selected"]>(selected);
   const [copyState, setCopyState] = useState<"idle" | "copied" | "error">(
     "idle",
   );
@@ -201,7 +200,8 @@ export default function TemplateWorkspace({
           <div>
             <p className="workspace-kicker">Selected Block</p>
             <h2>
-              {selectedTemplate.group.folder} / {formatTemplateName(selectedTemplate.file.name)}
+              {selectedTemplate.group.folder} /{" "}
+              {formatTemplateName(selectedTemplate.file.name)}
             </h2>
           </div>
           <button className="copy-button" type="button" onClick={handleCopy}>
