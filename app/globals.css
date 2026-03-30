@@ -181,10 +181,41 @@ body {
   opacity: 0.95;
 }
 
+.tab-switcher {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.tab-btn {
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--ink-1);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 7px 18px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tab-btn.is-active {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.tab-btn:not(.is-active):hover {
+  background: rgba(111, 66, 193, 0.1);
+  color: var(--accent);
+}
+
 .workspace-panels {
   padding: 16px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
   height: 100%;
   min-height: 0;

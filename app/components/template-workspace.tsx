@@ -53,6 +53,7 @@ export default function TemplateWorkspace({
   const [copyState, setCopyState] = useState<"idle" | "copied" | "error">(
     "idle",
   );
+  const [activeTab, setActiveTab] = useState<"preview" | "code">("preview");
 
   useEffect(() => {
     setActiveSelection(selected);
@@ -204,6 +205,27 @@ export default function TemplateWorkspace({
               {formatTemplateName(selectedTemplate.file.name)}
             </h2>
           </div>
+          <div className="tab-switcher" role="tablist">
+            <button
+              className={`tab-btn${activeTab === "preview" ? " is-active" : ""}`}
+              role="tab"
+              aria-selected={activeTab === "preview"}
+              type="button"
+              onClick={() => setActiveTab("preview")}
+            >
+              Preview
+            </button>
+            <button
+              className={`tab-btn${activeTab === "code" ? " is-active" : ""}`}
+              role="tab"
+              aria-selected={activeTab === "code"}
+              type="button"
+              onClick={() => setActiveTab("code")}
+            >
+              Code
+            </button>
+          </div>
+
           <button className="copy-button" type="button" onClick={handleCopy}>
             {copyState === "copied"
               ? "Copied"
@@ -214,27 +236,31 @@ export default function TemplateWorkspace({
         </header>
 
         <div className="workspace-panels">
-          <article className="panel">
-            <div className="panel-title">Live Preview</div>
-            <div className="preview-frame-wrap">
-              <iframe
-                className="preview-frame"
-                srcDoc={buildPreviewDocument(code)}
-                title={`${selectedTemplate.group.folder} ${selectedTemplate.file.name} preview`}
-              />
-            </div>
-          </article>
+          {activeTab === "preview" && (
+            <article className="panel">
+              <div className="panel-title">Live Preview</div>
+              <div className="preview-frame-wrap">
+                <iframe
+                  className="preview-frame"
+                  srcDoc={buildPreviewDocument(code)}
+                  title={`${selectedTemplate.group.folder} ${selectedTemplate.file.name} preview`}
+                />
+              </div>
+            </article>
+          )}
 
-          <article className="panel">
-            <div className="panel-title">HTML Code</div>
-            <pre className="code-block">
-              <code
-                dangerouslySetInnerHTML={{
-                  __html: hljs.highlight(code, { language: "html" }).value,
-                }}
-              />
-            </pre>
-          </article>
+          {activeTab === "code" && (
+            <article className="panel">
+              <div className="panel-title">HTML Code</div>
+              <pre className="code-block">
+                <code
+                  dangerouslySetInnerHTML={{
+                    __html: hljs.highlight(code, { language: "html" }).value,
+                  }}
+                />
+              </pre>
+            </article>
+          )}
         </div>
       </section>
     </main>
