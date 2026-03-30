@@ -1,0 +1,87 @@
+<div class="container py-4 py-xl-5">
+  <div class="row g-4">
+    <div class="col-md-7">
+      <h4 class="fw-bold mb-4">Billing Information</h4>
+      <form>
+        <div class="row g-3">
+          <div class="col-6">
+            <label class="form-label" for="checkFirstName">First name</label>
+            <input class="form-control" type="text" id="checkFirstName" placeholder="John" />
+          </div>
+          <div class="col-6">
+            <label class="form-label" for="checkLastName">Last name</label>
+            <input class="form-control" type="text" id="checkLastName" placeholder="Doe" />
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="checkEmail">Email address</label>
+            <input class="form-control" type="email" id="checkEmail" placeholder="name@example.com" />
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="checkAddress">Address</label>
+            <input class="form-control" type="text" id="checkAddress" placeholder="123 Main Street" />
+          </div>
+          <div class="col-6">
+            <label class="form-label" for="checkCity">City</label>
+            <input class="form-control" type="text" id="checkCity" placeholder="New York" />
+          </div>
+          <div class="col-3">
+            <label class="form-label" for="checkState">State</label>
+            <input class="form-control" type="text" id="checkState" placeholder="NY" />
+          </div>
+          <div class="col-3">
+            <label class="form-label" for="checkZip">ZIP</label>
+            <input class="form-control" type="text" id="checkZip" placeholder="10001" />
+          </div>
+          <div class="col-12">
+            <h5 class="fw-bold mt-2 mb-1">Payment</h5>
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="cardNumber">Card number</label>
+            <input class="form-control" type="text" id="cardNumber" placeholder="1234 5678 9012 3456" />
+          </div>
+          <div class="col-6">
+            <label class="form-label" for="cardExpiry">Expiration</label>
+            <input class="form-control" type="text" id="cardExpiry" placeholder="MM / YY" />
+          </div>
+          <div class="col-6">
+            <label class="form-label" for="cardCVV">CVV</label>
+            <input class="form-control" type="text" id="cardCVV" placeholder="123" />
+          </div>
+          <div class="col-12 mt-2">
+            <button class="btn btn-primary btn-lg w-100" type="submit">Place order</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-5">
+      <div class="card bg-light border-0">
+        <div class="card-body p-4">
+          <h5 class="fw-bold mb-4">Order Summary</h5>
+          <div class="d-flex justify-content-between mb-2">
+            <span>Pro Plan (yearly)</span>
+            <span>$99.00</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2 text-muted small">
+            <span>Discount (20%)</span>
+            <span>-$19.80</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2 text-muted small">
+            <span>Tax (8%)</span>
+            <span>$6.34</span>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between fw-bold fs-5">
+            <span>Total</span>
+            <span>$85.54</span>
+          </div>
+          <div class="mt-4">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Promo code" />
+              <button class="btn btn-outline-secondary" type="button">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
