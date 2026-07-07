@@ -32,8 +32,8 @@ export async function generateMetadata({
 
   const folderName = formatName(match.group.folder);
   const fileName = formatName(match.file.name);
-  const title = `${folderName} — ${fileName} | Bootstrap Blocks`;
-  const description = `Free Bootstrap 5 ${folderName.toLowerCase()} block — ${fileName}. Copy and paste into your Bootstrap project. Browse 120+ free Bootstrap UI blocks.`;
+  const title = `${folderName} ${fileName} | Bootstrap Blocks`;
+  const description = `Free Bootstrap 5 ${folderName.toLowerCase()} block: ${fileName}. Copy and paste into your Bootstrap project. Browse 120+ free Bootstrap UI blocks.`;
 
   return {
     title,
