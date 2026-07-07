@@ -146,7 +146,7 @@ export default function TemplateWorkspace({
     return (
       <main className="empty-state-shell">
         <div className="empty-state-card">
-          <h1>No templates found</h1>
+          <h1>No blocks found</h1>
           <p>Add HTML files in the templates directory to get started.</p>
         </div>
       </main>
@@ -159,14 +159,14 @@ export default function TemplateWorkspace({
     <main className="workspace-shell">
       <aside className="template-library">
         <div className="library-header">
-          <h1>Template Library</h1>
-          <p>Preview instantly, then copy the code.</p>
+          <h1>Block Library</h1>
+          <p>Browse blocks, copy the code, paste into your project.</p>
         </div>
 
         <div
           className="library-groups"
           role="navigation"
-          aria-label="Template categories"
+          aria-label="Block categories"
         >
           {groups.map((group) => (
             <section className="library-group" key={group.slug}>
