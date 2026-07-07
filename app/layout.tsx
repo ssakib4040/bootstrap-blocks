@@ -27,6 +27,11 @@ export const metadata: Metadata = {
   },
   description:
     "Browse 120+ free Bootstrap 5 HTML blocks. Navbars, hero sections, cards, footers, pricing tables, and more. Copy and paste into your Bootstrap project.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
   openGraph: {
     type: "website",
     siteName: "Bootstrap Blocks",
