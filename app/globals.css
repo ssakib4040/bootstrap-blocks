@@ -211,11 +211,12 @@ body {
 }
 
 .ad-banner {
-  padding: 0 14px;
-  min-height: 0;
+  padding: 10px 14px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
+  min-height: 90px;
 }
 
 .panel {

@@ -3,11 +3,11 @@ import { getTemplateGroups } from "@/lib/templates";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Bootstrap Blocks — Free Bootstrap 5 UI Blocks",
+  title: "Bootstrap Blocks | Free Bootstrap 5 UI Blocks",
   description:
     "Browse 120+ free Bootstrap 5 HTML blocks. Navbars, hero sections, cards, footers, pricing tables, and more. Copy and paste into your Bootstrap project.",
   openGraph: {
-    title: "Bootstrap Blocks — Free Bootstrap 5 UI Blocks",
+    title: "Bootstrap Blocks | Free Bootstrap 5 UI Blocks",
     description:
       "Browse 120+ free Bootstrap 5 HTML blocks. Navbars, hero sections, cards, footers, pricing tables, and more.",
     type: "website",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Bootstrap Blocks — Free Bootstrap 5 UI Blocks",
+    title: "Bootstrap Blocks | Free Bootstrap 5 UI Blocks",
     description:
       "Browse 120+ free Bootstrap 5 HTML blocks. Navbars, hero sections, cards, footers, pricing tables, and more.",
   },
