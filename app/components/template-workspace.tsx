@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import hljs from "highlight.js";
+import AdSense from "react-adsense";
 import type { TemplateGroup } from "@/lib/templates";
 
 type TemplateWorkspaceProps = {
@@ -234,6 +235,16 @@ export default function TemplateWorkspace({
                 : "Copy code"}
           </button>
         </header>
+
+        <div className="ad-banner dev">
+          <AdSense.Google
+            client={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID!}
+            slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID!}
+            style={{ display: "block" }}
+            format="auto"
+            responsive="true"
+          />
+        </div>
 
         <div className="workspace-panels">
           {activeTab === "preview" && (
