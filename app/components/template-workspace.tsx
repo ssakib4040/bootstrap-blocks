@@ -159,9 +159,8 @@ export default function TemplateWorkspace({
     <main className="workspace-shell">
       <aside className="template-library">
         <div className="library-header">
-          <p className="library-kicker">Bootstrap Blocks</p>
           <h1>Template Library</h1>
-          <p>Pick a block, preview instantly, then copy the code.</p>
+          <p>Preview instantly, then copy the code.</p>
         </div>
 
         <div
@@ -246,7 +245,7 @@ export default function TemplateWorkspace({
           />
         </div>
 
-        <div className="workspace-panels">
+        <div className="workspace-panels dev">
           {activeTab === "preview" && (
             <article className="panel">
               <div className="panel-title">Live Preview</div>
