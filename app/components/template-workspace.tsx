@@ -159,7 +159,7 @@ export default function TemplateWorkspace({
     <main className="workspace-shell">
       <aside className="template-library">
         <div className="library-header">
-          <h1>Block Library</h1>
+          <span className="library-title">Block Library</span>
           <p>Browse blocks, copy the code, paste into your project.</p>
         </div>
 
@@ -200,10 +200,10 @@ export default function TemplateWorkspace({
         <header className="workspace-header">
           <div>
             <p className="workspace-kicker">Selected Block</p>
-            <h2>
+            <h1>
               {selectedTemplate.group.folder} /{" "}
               {formatTemplateName(selectedTemplate.file.name)}
-            </h2>
+            </h1>
           </div>
           <div className="tab-switcher" role="tablist">
             <button
